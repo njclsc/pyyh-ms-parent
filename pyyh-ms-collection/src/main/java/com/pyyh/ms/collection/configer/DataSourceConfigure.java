@@ -71,7 +71,6 @@ public class DataSourceConfigure {
 		config.put("initialSize", initialSize);
 		config.put("removeAbandonedTimeout", removeAbandonedTimeout);
 		config.put("logAbandoned", logAbandoned);
-		System.out.println(username);
 		DataSource ds = DruidDataSourceFactory.createDataSource(config);
 		DataSourceConfigure.setDataSource(ds);
 		return ds;
