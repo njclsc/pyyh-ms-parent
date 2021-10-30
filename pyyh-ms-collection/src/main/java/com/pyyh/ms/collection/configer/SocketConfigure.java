@@ -1,10 +1,27 @@
 package com.pyyh.ms.collection.configer;
 
+import java.net.InetSocketAddress;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.pyyh.ms.collection.pojos.SocketCommunicationPojo;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.AdaptiveRecvByteBufAllocator;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioDatagramChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 @Configuration
 public class SocketConfigure {
@@ -46,20 +63,66 @@ public class SocketConfigure {
 		@Value("#{'${communication.http.httpAddress}'.split(',')}")
 		private String[] httpAddress;
 		//----------------------------------
+		private static SocketCommunicationPojo tcpService;
+		@Autowired
+		@Qualifier("initializers")
+		private HashMap<String, ? extends ChannelInboundHandlerAdapter> initializers;
 		
 		@Bean(name = "tcpServer")
 		public SocketCommunicationPojo initLocalTcpServer(){
 			SocketCommunicationPojo cp = null;
 			if(tcpServer){
-				
+				cp = new SocketCommunicationPojo();
+				cp.setType("tcpServer");
+				EventLoopGroup boss = new NioEventLoopGroup();
+				EventLoopGroup work = new NioEventLoopGroup();
+				ServerBootstrap bootstrap = new ServerBootstrap();
+				bootstrap.group(boss, work).channel(NioServerSocketChannel.class)
+					.option(ChannelOption.SO_BACKLOG, tcpServerBacklog)
+					.childOption(ChannelOption.RCVBUF_ALLOCATOR, new AdaptiveRecvByteBufAllocator(tcpBufMin, tcpBufInit, tcpBufMax))
+					.childHandler(initializers.get(BusinssConfigure.get_usedKey()));
+				for(String s : serverAddress){
+					try{
+						String[] address = s.split(":");
+						String ip = address[0].trim();
+						int port = Integer.parseInt(address[1].trim());
+						ChannelFuture channelFuture = bootstrap.bind(new InetSocketAddress(ip, port));
+						cp.setKey(ip + ":" + port);
+						cp.getLocalChannelFutures().put(ip + ":" + port, channelFuture);
+						cp.getRemoteChannelFutures().put(ip + ":" + port, new HashMap<String, Channel>());
+						SocketConfigure.setTcpReciveCmdAddr(s);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
 			}
+			SocketConfigure.setTcpService(cp);
 			return cp;
 		}
 		@Bean(name = "udp")
 		public SocketCommunicationPojo initLocalUdpServer(){
 			SocketCommunicationPojo cp = null;
 			if(udp){
-				
+				cp = new SocketCommunicationPojo();
+				cp.setType("udp");
+				EventLoopGroup work = new NioEventLoopGroup();
+				Bootstrap bootstrap = new Bootstrap();
+				bootstrap.group(work).channel(NioDatagramChannel.class)
+					.option(ChannelOption.RCVBUF_ALLOCATOR, new AdaptiveRecvByteBufAllocator(udpBufMin, udpBufInit, udpBufMax))
+					.handler(initializers.get(BusinssConfigure.get_UdpUsedKey()));
+				for(String s : udpAddress){
+					try{
+						String[] address = s.split(":");
+						String ip = address[0].trim();
+						int port = Integer.parseInt(address[1].trim());
+						ChannelFuture channelFuture = bootstrap.bind(new InetSocketAddress(ip, port));
+						cp.setKey(ip + ":" + port);
+						cp.getLocalChannelFutures().put(ip + ":" + port, channelFuture);
+						cp.getRemoteChannelFutures().put(ip + ":" + port, new HashMap<String, Channel>());
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
 			}
 			return cp;
 		}
@@ -67,8 +130,40 @@ public class SocketConfigure {
 		public SocketCommunicationPojo initLocalHttpServer(){
 			SocketCommunicationPojo cp = null;
 			if(http){
-				
+				cp = new SocketCommunicationPojo();
+				cp.setType("http");
+				EventLoopGroup boss = new NioEventLoopGroup();
+				EventLoopGroup work = new NioEventLoopGroup();
+				ServerBootstrap bootstrap = new ServerBootstrap();
+				bootstrap.group(boss, work).channel(NioServerSocketChannel.class)
+					.option(ChannelOption.RCVBUF_ALLOCATOR, new AdaptiveRecvByteBufAllocator(httpBufMin, httpBufInit, httpBufMax))
+					.childHandler(initializers.get(BusinssConfigure.get_httpUsedKey()));
+				for(String s : httpAddress){
+					try{
+						String[] address = s.split(":");
+						String ip = address[0].trim();
+						int port = Integer.parseInt(address[1].trim());
+						ChannelFuture channelFuture = bootstrap.bind(new InetSocketAddress(ip, port));
+						cp.setKey(ip + ":" + port);
+						cp.getLocalChannelFutures().put(ip + ":" + port, channelFuture);
+						cp.getRemoteChannelFutures().put(ip + ":" + port, new HashMap<String, Channel>());
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
 			}
 			return cp;
+		}
+		public static SocketCommunicationPojo getTcpService() {
+			return tcpService;
+		}
+		public static void setTcpService(SocketCommunicationPojo tcpService) {
+			SocketConfigure.tcpService = tcpService;
+		}
+		public static String getTcpReciveCmdAddr() {
+			return tcpReciveCmdAddr;
+		}
+		public static void setTcpReciveCmdAddr(String tcpReciveCmdAddr) {
+			SocketConfigure.tcpReciveCmdAddr = tcpReciveCmdAddr;
 		}
 }

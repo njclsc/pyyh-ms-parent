@@ -1,14 +1,14 @@
 #--------------业务数据处理----------------------------
 business:
   tcpServer: 
-    allKeys: jx_tcpserver
-    usedKey: jx_tcpserver
+    allKeys: test1,test2,test3
+    usedKey: test1
   udp: 
-    allKeys: uset1, uset2
-    usedKey: uset2
+    allKeys: udpTest1,udpTest2,udpTest3
+    usedKey: udpTest3
   http:
-    allKeys: jx_http
-    usedKey: jx_http
+    allKeys: http1,http2,http3
+    usedKey: http3
 #--------------线程池-----------------------------
 data: 
   threadPool: 
