@@ -143,5 +143,6 @@
 	</dependencyManagement>
 	<modules>
 		<module>pyyh-ms-collection</module>
+		<module>pyyh-ms-login</module>
 	</modules>
 </project>
