@@ -7,6 +7,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.pyyh.ms.login.pojos.UserPojo;
+
 public class CustomRealm extends AuthorizingRealm{
 
 	@Override
@@ -18,6 +20,7 @@ public class CustomRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken arg0) throws AuthenticationException {
 		// TODO Auto-generated method stub
+		UserPojo user = new UserPojo();
 		return null;
 	}
 
