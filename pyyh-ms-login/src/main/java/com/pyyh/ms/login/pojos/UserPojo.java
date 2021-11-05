@@ -4,7 +4,7 @@ public class UserPojo {
 	private int id;
 	private String account;
 	private String password;
-	private int organizationId;
+	private String organizationCode;
 	private int roleIndex;
 	private boolean isLogin = false;
 	public int getId() {
@@ -25,11 +25,11 @@ public class UserPojo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getOrganizationId() {
-		return organizationId;
+	public String getOrganizationCode() {
+		return organizationCode;
 	}
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
+	public void setOrganizationCode(String organizationCode) {
+		this.organizationCode = organizationCode;
 	}
 	public int getRoleIndex() {
 		return roleIndex;

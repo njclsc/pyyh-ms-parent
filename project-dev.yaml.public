@@ -1,0 +1,6 @@
+token:
+  jwt:
+    alg: HS256
+    typ: JWT
+    secret: pyyhtemplate123321
+    expires: 86400000
