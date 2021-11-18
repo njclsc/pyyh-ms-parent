@@ -1,14 +1,14 @@
-#--------------业务数据处理----------------------------
+#--------------业务配置----------------------------
 business:
   tcpServer: 
-    allKeys: test1,test2,test3
+    allKeys: test1,notest2,notest3
     usedKey: test1
   udp: 
-    allKeys: udpTest1,udpTest2,udpTest3
-    usedKey: udpTest3
+    allKeys: udpTest1,noudpTest2,noudpTest3
+    usedKey: noudpTest2
   http:
-    allKeys: http1,http2,http3
-    usedKey: http3
+    allKeys: http1,nohttp2,nohttp3
+    usedKey: nohttp3
 #--------------线程池-----------------------------
 data: 
   threadPool: 

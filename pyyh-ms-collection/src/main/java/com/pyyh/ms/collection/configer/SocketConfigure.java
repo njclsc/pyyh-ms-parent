@@ -28,6 +28,7 @@ public class SocketConfigure {
 	//---------------tcpserver---------------
 		@Value("${communication.tcp.server.used}")
 		private boolean tcpServer;
+		private static boolean _tcpServer;
 		@Value("${communication.tcp.server.tcpServerBacklog}")
 		private int tcpServerBacklog;
 		@Value("${communication.tcp.server.tcpBufMin}")
@@ -43,6 +44,7 @@ public class SocketConfigure {
 		//---------------udp---------------
 		@Value("${communication.udp.used}")
 		private boolean udp;
+		private static boolean _udp;
 		@Value("${communication.udp.udpBufMin}")
 		private int udpBufMin;
 		@Value("${communication.udp.udpBufInit}")
@@ -54,6 +56,7 @@ public class SocketConfigure {
 		//---------------http---------------
 		@Value("${communication.http.used}")
 		private boolean http;
+		private static boolean _http;
 		@Value("${communication.http.httpBufMin}")
 		private int httpBufMin;
 		@Value("${communication.http.httpBufInit}")
@@ -95,6 +98,7 @@ public class SocketConfigure {
 						e.printStackTrace();
 					}
 				}
+				SocketConfigure.set_tcpServer(tcpServer);
 			}
 			SocketConfigure.setTcpService(cp);
 			return cp;
@@ -123,6 +127,7 @@ public class SocketConfigure {
 						e.printStackTrace();
 					}
 				}
+				SocketConfigure.set_udp(udp);
 			}
 			return cp;
 		}
@@ -151,6 +156,7 @@ public class SocketConfigure {
 						e.printStackTrace();
 					}
 				}
+				SocketConfigure.set_http(http);
 			}
 			return cp;
 		}
@@ -165,5 +171,41 @@ public class SocketConfigure {
 		}
 		public static void setTcpReciveCmdAddr(String tcpReciveCmdAddr) {
 			SocketConfigure.tcpReciveCmdAddr = tcpReciveCmdAddr;
+		}
+		public boolean isTcpServer() {
+			return tcpServer;
+		}
+		public void setTcpServer(boolean tcpServer) {
+			this.tcpServer = tcpServer;
+		}
+		public boolean isUdp() {
+			return udp;
+		}
+		public void setUdp(boolean udp) {
+			this.udp = udp;
+		}
+		public boolean isHttp() {
+			return http;
+		}
+		public void setHttp(boolean http) {
+			this.http = http;
+		}
+		public static boolean is_tcpServer() {
+			return _tcpServer;
+		}
+		public static void set_tcpServer(boolean _tcpServer) {
+			SocketConfigure._tcpServer = _tcpServer;
+		}
+		public static boolean is_udp() {
+			return _udp;
+		}
+		public static void set_udp(boolean _udp) {
+			SocketConfigure._udp = _udp;
+		}
+		public static boolean is_http() {
+			return _http;
+		}
+		public static void set_http(boolean _http) {
+			SocketConfigure._http = _http;
 		}
 }

@@ -24,12 +24,14 @@ public class BusinssConfigure {
 	// -----------------tcpServer------------------------
 	@Value("#{'${business.tcpServer.allKeys}'.split(',')}")
 	private String[] allKey;
+	private static String[] _allKey;
 	@Value("${business.tcpServer.usedKey}")
 	private String usedKey;
 	private static String _usedKey;
 	// -----------------udp------------------------
 	@Value("#{'${business.udp.allKeys}'.split(',')}")
 	private String[] UdpAllKey;
+	private static String[] _udpAllKey;
 	@Value("${business.udp.usedKey}")
 	private String UdpUsedKey;
 	private static String _UdpUsedKey;
@@ -38,6 +40,7 @@ public class BusinssConfigure {
 	private String[] httpAllKey;
 	@Value("${business.http.usedKey}")
 	private String httpUsedKey;
+	private static String[] _httpAllKey;
 	private static String _httpUsedKey;
 	
 	@Bean(name = "initializers")
@@ -62,9 +65,9 @@ public class BusinssConfigure {
 			initializers.put(httpAllKey[2].trim(), new HttpInitializer3());
 		}
 		
-		
-		
-		
+		BusinssConfigure.set_allKey(_allKey);
+		BusinssConfigure.set_udpAllKey(UdpAllKey);
+		BusinssConfigure.set_httpAllKey(httpAllKey);
 		BusinssConfigure.set_usedKey(usedKey);
 		BusinssConfigure.set_UdpUsedKey(UdpUsedKey);
 		BusinssConfigure.set_httpUsedKey(httpUsedKey);
@@ -139,8 +142,32 @@ public class BusinssConfigure {
 		return _httpUsedKey;
 	}
 
+	public static String[] get_httpAllKey() {
+		return _httpAllKey;
+	}
+
+	public static void set_httpAllKey(String[] _httpAllKey) {
+		BusinssConfigure._httpAllKey = _httpAllKey;
+	}
+
 	public static void set_httpUsedKey(String _httpUsedKey) {
 		BusinssConfigure._httpUsedKey = _httpUsedKey;
+	}
+
+	public static String[] get_allKey() {
+		return _allKey;
+	}
+
+	public static void set_allKey(String[] _allKey) {
+		BusinssConfigure._allKey = _allKey;
+	}
+
+	public static String[] get_udpAllKey() {
+		return _udpAllKey;
+	}
+
+	public static void set_udpAllKey(String[] _udpAllKey) {
+		BusinssConfigure._udpAllKey = _udpAllKey;
 	}
 	 
 }
