@@ -25,22 +25,27 @@ public class RedisSourceConfigure {
 	@Value("${spring.redis.maxWaitMillis}")
 	private long redis_maxWaitMillis;
 	private static JedisCluster jedisCluster;
-
+	@Value("${redis.used}")
+	private boolean redisUsed;
 	@Bean(name = "rediSource")
 	public JedisCluster initJedisCluster() {
-		String[] _nodes = redis_nodes.trim().split(",");
-		HashSet<HostAndPort> nodes = new HashSet<>();
-		for (String s : _nodes) {
-			String[] hp = s.trim().split(":");
-			nodes.add(new HostAndPort(hp[0], Integer.parseInt(hp[1])));
+		if(redisUsed){
+			String[] _nodes = redis_nodes.trim().split(",");
+			HashSet<HostAndPort> nodes = new HashSet<>();
+			for (String s : _nodes) {
+				String[] hp = s.trim().split(":");
+				nodes.add(new HostAndPort(hp[0], Integer.parseInt(hp[1])));
+			}
+			JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+			jedisPoolConfig.setMaxIdle(redis_maxIdle);
+			jedisPoolConfig.setMaxTotal(redis_maxTotal);
+			jedisPoolConfig.setMaxWaitMillis(redis_maxWaitMillis);
+			JedisCluster jc = new JedisCluster(nodes, jedisPoolConfig);
+			RedisSourceConfigure.setJedisCluster(jc);
+			return jc;
+		}else{
+			return null;
 		}
-		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-		jedisPoolConfig.setMaxIdle(redis_maxIdle);
-		jedisPoolConfig.setMaxTotal(redis_maxTotal);
-		jedisPoolConfig.setMaxWaitMillis(redis_maxWaitMillis);
-		JedisCluster jc = new JedisCluster(nodes, jedisPoolConfig);
-		RedisSourceConfigure.setJedisCluster(jc);
-		return jc;
 	}
 
 	public static JedisCluster getJedisCluster() {

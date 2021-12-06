@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.pyyh.ms.collection.bussiness.renwei.initializer.RenweiUDPChannelInitializer;
 import com.pyyh.ms.collection.bussiness.test.initializer.HttpInitializer1;
 import com.pyyh.ms.collection.bussiness.test.initializer.HttpInitializer2;
 import com.pyyh.ms.collection.bussiness.test.initializer.HttpInitializer3;
@@ -57,6 +58,7 @@ public class BusinssConfigure {
 			initializers.put(UdpAllKey[0].trim(), new UDPInitializer1());
 			initializers.put(UdpAllKey[1].trim(), new UDPInitializer2());
 			initializers.put(UdpAllKey[2].trim(), new UDPInitializer3());
+			initializers.put(UdpAllKey[3].trim(), new RenweiUDPChannelInitializer());
 		}
 		//-----------------http------------------------
 		{
