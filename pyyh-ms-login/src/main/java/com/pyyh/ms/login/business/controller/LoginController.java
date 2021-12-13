@@ -1,5 +1,7 @@
 package com.pyyh.ms.login.business.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +19,7 @@ public class LoginController {
 	@Qualifier("LoginServiceImp")
 	private ILoginService loginService;
 	@RequestMapping("check")
-	public String check(@RequestBody UserPojo user){
-		return loginService.check(user);
+	public String check(@RequestBody UserPojo user, HttpServletResponse response){
+		return loginService.check(user, response);
 	}
 }

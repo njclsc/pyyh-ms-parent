@@ -1,5 +1,8 @@
 package com.pyyh.ms.login.business.serviceimp;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -23,7 +26,7 @@ public class LoginServiceImp implements ILoginService{
 	@Qualifier("rediSource")
 	private JedisCluster jedis;
 	@Override
-	public String check(UserPojo user) {
+	public String check(UserPojo user, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		try{
 			String key = user.getAccount() + "_#_" + user.getOrganizationCode();
@@ -35,7 +38,9 @@ public class LoginServiceImp implements ILoginService{
 			user.setLogin(true);
 			jedis.set(key, JSONObject.toJSONString(user));
 			jedis.pexpire(key, ProjectConfig.getJWT_EXPIRES());
-			return JSONObject.toJSONString(response("/login/login/check", "登录成功", "success", ProjectConfig.tokenOperate(1, user), null));
+			String jwtToken = ProjectConfig.tokenOperate(1, user);
+			response.addCookie(new Cookie("jwtToken", jwtToken));
+			return JSONObject.toJSONString(response("/login/login/check", "登录成功", "success", jwtToken, null));
 		}catch(UnknownAccountException e){
 			return JSONObject.toJSONString(response("/login/login/check", "账号不存在", "fail", null, null));
 		}catch(IncorrectCredentialsException e){
@@ -43,12 +48,12 @@ public class LoginServiceImp implements ILoginService{
 		}
 	}
 	
-	private ResponsePojo response(String action, String message, String state, String token, Object result){
+	private ResponsePojo response(String action, String message, String state, String jwtToken, Object result){
 		ResponsePojo rp = new ResponsePojo();
 		rp.setAction(action);
 		rp.setMessage(message);
 		rp.setState(state);
-		rp.setToken(token);
+		rp.setToken(jwtToken);
 		rp.setResult(result);
 		return rp;
 	}
