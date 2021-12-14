@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pyyh.ms.manager.business.dao.IUserDao">
+
+	<insert id="userAdd" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo" useGeneratedKeys = "true" keyProperty = "id">
+		insert into tb_user(account, password, organizationCode, createAccount, createDateTime) values(
+			#{account}, #{password}, #{organizationCode}, #{createAccount}, #{createDateTime}
+		)
+	</insert>
+	<select id="userExists" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo" resultType = "Integer">
+		select exists(select 1 from tb_user where account = #{account})
+	</select>
+	<delete id = "userDelete" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo">
+		delete from tb_user where id = ${id}
+	</delete>
+	
+</mapper>
