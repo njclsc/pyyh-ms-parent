@@ -20,7 +20,15 @@ public class UserController {
 		return userService.userAdd(user);
 	}
 	@RequestMapping("delete")
-	public String userdelete(@RequestBody UserPojo user){
+	public String userDelete(@RequestBody UserPojo user){
 		return userService.userDelete(user);
+	}
+	@RequestMapping("update")
+	public String userUpdate(@RequestBody UserPojo user){
+		return userService.userUpdate(user);
+	}
+	@RequestMapping("find")
+	public String userFind(@RequestBody UserPojo user){
+		return userService.userFind(user);
 	}
 }

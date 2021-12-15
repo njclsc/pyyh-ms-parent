@@ -4,6 +4,8 @@ public class UserPojo {
 	private int id;
 	private String account;
 	private String password;
+	private String newPassword;
+	private String confirmPassword;
 	private String organizationCode;
 	private String createAccount;
 	private String modifyAccount;
@@ -23,6 +25,18 @@ public class UserPojo {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 	public int getBegin() {
 		return begin;

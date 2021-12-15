@@ -14,5 +14,35 @@
 	<delete id = "userDelete" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo">
 		delete from tb_user where id = ${id}
 	</delete>
-	
+	<update id="userUpdate" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo">
+		update tb_user set password = #{newPassword}, modifyAccount = #{modifyAccount}, modifyDateTime = #{modifyDateTime}
+			where organizationCode = #{organizationCode} and account = #{account}
+	</update>
+	<select id="userFind" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo" resultType = "com.pyyh.ms.manager.business.pojos.UserPojo">
+		select * from tb_user where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${id}
+		</if>
+		<if test="account != null and account != ''">
+			and account= #{account}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = #{organizationCode}
+		</if>
+		<if test="rows != null and rows != ''">
+			limit ${begin}, ${rows}
+		</if>
+	</select>
+	<select id="userCount" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo" resultType = "Integer">
+		select count(*) from tb_user where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${id}
+		</if>
+		<if test="account != null and account != ''">
+			and account= #{account}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = #{organizationCode}
+		</if>
+	</select>
 </mapper>
