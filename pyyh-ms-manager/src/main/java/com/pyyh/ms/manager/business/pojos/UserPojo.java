@@ -6,11 +6,13 @@ public class UserPojo {
 	private String password;
 	private String newPassword;
 	private String confirmPassword;
+	private int organizationIndex;
 	private String organizationCode;
 	private String createAccount;
 	private String modifyAccount;
 	private String createDateTime;
 	private String modifyDateTime;
+	private boolean isLogin;
 	private int page;
 	private int rows;
 	private int begin;
@@ -26,8 +28,21 @@ public class UserPojo {
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
+
+	public boolean isLogin() {
+		return isLogin;
+	}
+	public void setLogin(boolean isLogin) {
+		this.isLogin = isLogin;
+	}
 	public String getNewPassword() {
 		return newPassword;
+	}
+	public int getOrganizationIndex() {
+		return organizationIndex;
+	}
+	public void setOrganizationIndex(int organizationIndex) {
+		this.organizationIndex = organizationIndex;
 	}
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;

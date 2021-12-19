@@ -3,7 +3,8 @@ package com.pyyh.ms.manager.business.pojos;
 public class RolePojo {
 	private int id;
 	private String roleName;
-	private String organizationIndex;
+	private int organizationIndex;
+	private String organizationCode;
 	private String c_describe;
 	private String createDateTime;
 	private String modifyDateTime;
@@ -21,11 +22,18 @@ public class RolePojo {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	public String getOrganizationIndex() {
+
+	public int getOrganizationIndex() {
 		return organizationIndex;
 	}
-	public void setOrganizationIndex(String organizationIndex) {
+	public void setOrganizationIndex(int organizationIndex) {
 		this.organizationIndex = organizationIndex;
+	}
+	public String getOrganizationCode() {
+		return organizationCode;
+	}
+	public void setOrganizationCode(String organizationCode) {
+		this.organizationCode = organizationCode;
 	}
 	public String getC_describe() {
 		return c_describe;

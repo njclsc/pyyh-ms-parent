@@ -1,4 +1,4 @@
-package com.pyyh.ms.login.configer;
+package com.pyyh.ms.manager.configer;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
-import com.pyyh.ms.login.pojos.UserPojo;
+import com.pyyh.ms.manager.business.pojos.UserPojo;
 
 @Configuration
 public class ProjectConfig {

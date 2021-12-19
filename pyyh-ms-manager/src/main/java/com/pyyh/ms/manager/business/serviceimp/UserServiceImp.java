@@ -18,26 +18,40 @@ public class UserServiceImp implements IUserService{
 	@Override
 	public String userAdd(UserPojo user) {
 		// TODO Auto-generated method stub
-		System.out.println(user.getId());
+		ResponsePojo rp = new ResponsePojo();
 		if(userDao.userExists(user) == 0){
 			userDao.userAdd(user);
+			rp.setState("success");
+			rp.setMessage("账号添加成功!");
 		}else{
-			System.out.println("xxccc");
+			rp.setState("fail");
+			rp.setMessage("账号以存在!");
 		}
-		System.out.println(user.getId());
-		return null;
+		return JSONObject.toJSONString(rp);
 	}
 	@Override
 	public String userDelete(UserPojo user) {
 		// TODO Auto-generated method stub
+		ResponsePojo rp = new ResponsePojo();
 		userDao.userDelete(user);
-		return null;
+		rp.setState("success");
+		rp.setMessage("账号已删除!");
+		return JSONObject.toJSONString(rp);
 	}
 	@Override
 	public String userUpdate(UserPojo user) {
 		// TODO Auto-generated method stub
-		userDao.userUpdate(user);
-		return null;
+		ResponsePojo rp = new ResponsePojo();
+		UserPojo user1 = userDao.userFind(user).get(0);
+		if(user1.getPassword().equals(user.getPassword()) && user.getNewPassword().equals(user.getConfirmPassword())){
+			userDao.userUpdate(user);
+			rp.setState("success");
+			rp.setMessage("账号修改成功!");
+		}else{
+			rp.setState("fail");
+			rp.setMessage("账号修改失败!");
+		}
+		return JSONObject.toJSONString(rp);
 	}
 	@Override
 	public String userFind(UserPojo user) {

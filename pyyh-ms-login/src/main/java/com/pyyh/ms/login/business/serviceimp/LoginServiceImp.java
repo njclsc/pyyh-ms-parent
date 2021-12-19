@@ -1,6 +1,7 @@
 package com.pyyh.ms.login.business.serviceimp;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
@@ -33,7 +34,6 @@ public class LoginServiceImp implements ILoginService{
 			UsernamePasswordToken token = new UsernamePasswordToken(key, user.getPassword());
 			Subject subject = SecurityUtils.getSubject();
 			subject.login(token);
-			
 			user.setPassword("");
 			user.setLogin(true);
 			jedis.set(key, JSONObject.toJSONString(user));
@@ -47,7 +47,13 @@ public class LoginServiceImp implements ILoginService{
 			return JSONObject.toJSONString(response("/login/login/check", "密码错误", "fail", null, null));
 		}
 	}
-	
+	@Override
+	public String loginOut(UserPojo user, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		JSONObject userJSONString = JSONObject.parseObject(ProjectConfig.tokenOperate(2, request.getHeader("jwtToken")));
+		Long l = jedis.del(userJSONString.getString("account") + "_#_" + userJSONString.getString("organizationCode"));
+		return JSONObject.toJSONString(response("/login/login/loginOut", "退出", "success", null, null));
+	}
 	private ResponsePojo response(String action, String message, String state, String jwtToken, Object result){
 		ResponsePojo rp = new ResponsePojo();
 		rp.setAction(action);
@@ -57,5 +63,4 @@ public class LoginServiceImp implements ILoginService{
 		rp.setResult(result);
 		return rp;
 	}
-
 }

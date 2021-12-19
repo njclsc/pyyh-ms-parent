@@ -6,5 +6,10 @@ import com.pyyh.ms.manager.business.pojos.RolePojo;
 
 @Repository
 public interface IRoleDao {
-	public void userRole(RolePojo user);
+	public void roleAdd(RolePojo role);
+	public int roleExists(RolePojo role);
+	public void roleDelete(RolePojo role);
+	public void roleUpdate(RolePojo role);
+	public void roleFind(RolePojo role);
+	public void roleCount(RolePojo role);
 }

@@ -2,5 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pyyh.ms.manager.business.dao.IRoleDao">
-
+	<insert id="roleAdd" parameterType = "com.pyyh.ms.manager.business.pojos.RolePojo" useGeneratedKeys = "true" keyProperty = "id">
+		insert into tb_role(roleName,organizationIndex,organizationCode,c_describe,createDateTime,modifyDateTime,createAccount,modifyAccount) values(
+			#{roleName}, #{organizationIndex}, #{organizationCode}, #{c_describe},
+			#{createDateTime}, #{modifyDateTime}, #{createAccount}, #{modifyAccount}
+		)
+	</insert>
+	<select id="roleExists" parameterType = "com.pyyh.ms.manager.business.pojos.RolePojo" resultType = "Integer">
+		select exists(select 1 from tb_role where roleName = #{roleName} and organizationCode = #{organizationCode})
+	</select>
+	<delete id="roleDelete" parameterType = "com.pyyh.ms.manager.business.pojos.RolePojo">
+		delete from tb_role where id = #{id} and organizationCode = #{organizationCode}
+	</delete>
 </mapper>

@@ -9,10 +9,10 @@
 		)
 	</insert>
 	<select id="userExists" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo" resultType = "Integer">
-		select exists(select 1 from tb_user where account = #{account})
+		select exists(select 1 from tb_user where account = #{account} and organizationCode = #{organizationCode})
 	</select>
 	<delete id = "userDelete" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo">
-		delete from tb_user where id = ${id}
+		delete from tb_user where id = ${id} and organizationCode = #{organizationCode}
 	</delete>
 	<update id="userUpdate" parameterType = "com.pyyh.ms.manager.business.pojos.UserPojo">
 		update tb_user set password = #{newPassword}, modifyAccount = #{modifyAccount}, modifyDateTime = #{modifyDateTime}

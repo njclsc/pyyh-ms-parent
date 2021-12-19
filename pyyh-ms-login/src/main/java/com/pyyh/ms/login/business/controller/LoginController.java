@@ -1,5 +1,6 @@
 package com.pyyh.ms.login.business.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class LoginController {
 	@RequestMapping("check")
 	public String check(@RequestBody UserPojo user, HttpServletResponse response){
 		return loginService.check(user, response);
+	}
+	@RequestMapping("loginOut")
+	public String loginOut(@RequestBody UserPojo user, HttpServletRequest request){
+		return loginService.loginOut(user, request);
 	}
 }
