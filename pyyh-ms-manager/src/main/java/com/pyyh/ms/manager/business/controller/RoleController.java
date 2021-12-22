@@ -24,4 +24,12 @@ public class RoleController {
 	public String roleDelete(@RequestBody RolePojo role){
 		return roleService.roleDelete(role);
 	}
+	@RequestMapping("update")
+	public String roleUpdate(@RequestBody RolePojo role){
+		return roleService.roleUpdate(role);
+	}
+	@RequestMapping("find")
+	public String roleFind(@RequestBody RolePojo role){
+		return roleService.roleFind(role);
+	}
 }

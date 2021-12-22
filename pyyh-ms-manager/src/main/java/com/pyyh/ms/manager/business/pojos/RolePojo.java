@@ -10,11 +10,32 @@ public class RolePojo {
 	private String modifyDateTime;
 	private String createAccount;
 	private String modifyAccount;
+	private int page;
+	private int rows;
+	private int begin;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	public int getBegin() {
+		return begin;
+	}
+	public void setBegin(int begin) {
+		this.begin = begin;
 	}
 	public String getRoleName() {
 		return roleName;

@@ -1,5 +1,7 @@
 package com.pyyh.ms.manager.business.serviceimp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,30 @@ public class RoleServiceImp implements IRoleService{
 		ResponsePojo rp = new ResponsePojo();
 		rp.setState("success");
 		rp.setMessage("角色已删除!");
+		return JSONObject.toJSONString(rp);
+	}
+	@Override
+	public String roleUpdate(RolePojo role) {
+		// TODO Auto-generated method stub
+		roleDao.roleUpdate(role);
+		ResponsePojo rp = new ResponsePojo();
+		rp.setState("success");
+		rp.setMessage("角色修改成功!");
+		return JSONObject.toJSONString(rp);
+	}
+	@Override
+	public String roleFind(RolePojo role) {
+		// TODO Auto-generated method stub
+		int page = role.getPage();
+		int rows = role.getRows();
+		int begin = (page - 1) * rows;
+		role.setBegin(begin);
+		int total = roleDao.roleCount(role);
+		List<RolePojo> roles = roleDao.roleFind(role);
+		ResponsePojo rp = new ResponsePojo();
+		rp.setState("success");
+		rp.setTotal(total);
+		rp.setResultData(roles);
 		return JSONObject.toJSONString(rp);
 	}
 

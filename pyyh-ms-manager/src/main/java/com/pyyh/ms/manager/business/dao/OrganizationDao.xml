@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pyyh.ms.manager.business.dao.IOrganizationDao">
+	<insert id="organizationAdd" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" useGeneratedKeys = "true" keyProperty = "id">
+		insert into tb_organization(organizationName, organizationCode, organizationLevel, parentOrganizationCode, district) values(
+			#{organizationName}, #{organizationCode}, #{organizationLevel}, #{parentOrganizationCode}, #{district}
+		)
+	</insert>
+	<select id="organizationExists" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "Integer">
+		select exists(select 1 from tb_organization where organizationName = #{organizationName} and organizationCode = #{organizationCode})
+	</select>
+	<delete id = "organizationDelete" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
+		delete from tb_organization where id = ${id}
+	</delete>
+	<update id="organizationUpdate" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
+		update tb_organization set organizationName = #{organizationName}, organizationCode = #{organizationCode}, organizationLevel = #{organizationLevel}, 
+			parentOrganizationCode = #{parentOrganizationCode}, district = #{district} where id = ${id}
+	</update>
+	<select id="organizationFind" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
+		select * from tb_organization where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${id}
+		</if>
+		<if test="organizationName != null and organizationName != ''">
+			and organizationName = ${organizationName}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = ${organizationCode}
+		</if>
+		<if test="organizationLevel != null and organizationLevel != ''">
+			and organizationLevel = ${organizationLevel}
+		</if>
+		<if test="parentOrganizationCode != null and parentOrganizationCode != ''">
+			and parentOrganizationCode = #{parentOrganizationCode}
+		</if>
+		<if test="rows != null and rows != ''">
+			limit ${begin}, ${rows}
+		</if>
+	</select>
+	<select id="organizationCount" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "Integer">
+		select count(*) from tb_organization where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${id}
+		</if>
+		<if test="organizationName != null and organizationName != ''">
+			and organizationName = ${organizationName}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = ${organizationCode}
+		</if>
+		<if test="organizationLevel != null and organizationLevel != ''">
+			and organizationLevel = ${organizationLevel}
+		</if>
+		<if test="parentOrganizationCode != null and parentOrganizationCode != ''">
+			and parentOrganizationCode = #{parentOrganizationCode}
+		</if>
+	</select>
+</mapper>

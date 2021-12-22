@@ -14,4 +14,39 @@
 	<delete id="roleDelete" parameterType = "com.pyyh.ms.manager.business.pojos.RolePojo">
 		delete from tb_role where id = #{id} and organizationCode = #{organizationCode}
 	</delete>
+	<update id="roleUpdate" parameterType = "com.pyyh.ms.manager.business.pojos.RolePojo">
+		update tb_role set roleName = #{roleName}, organizationCode = #{organizationCode},
+			c_describe = #{c_describe}
+		where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${id}
+		</if>
+	</update>
+	<select id="roleFind" parameterType = "com.pyyh.ms.manager.business.pojos.RolePojo" resultType = "com.pyyh.ms.manager.business.pojos.RolePojo">
+		select * from tb_role where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${id}
+		</if>
+		<if test="roleName != null and roleName != ''">
+			and roleName = #{roleName}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = #{organizationCode}
+		</if>
+		<if test="rows != null and rows != ''">
+			limit ${begin}, ${rows}
+		</if>
+	</select>
+		<select id="roleCount" parameterType = "com.pyyh.ms.manager.business.pojos.RolePojo" resultType = "Integer">
+		select count(*) from tb_role where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${id}
+		</if>
+		<if test="roleName != null and roleName != ''">
+			and roleName = #{roleName}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = #{organizationCode}
+		</if>
+	</select>
 </mapper>

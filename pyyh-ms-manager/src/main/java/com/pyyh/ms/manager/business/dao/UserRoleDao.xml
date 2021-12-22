@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pyyh.ms.manager.business.dao.IUserRoleDao">
+	<insert id="userRoleAdd" parameterType = "com.pyyh.ms.manager.business.pojos.UserRolePojo" useGeneratedKeys = "true" keyProperty = "id">
+		insert into tb_user_role(organizationIndex, roleIndex, userIndex) values(
+			${organizationIndex}, ${roleIndex}, ${userIndex}
+		)
+	</insert>
+	<select id="userRoleExists" parameterType = "com.pyyh.ms.manager.business.pojos.UserRolePojo" resultType = "Integer">
+		select exists(select 1 from tb_user_role where organizationIndex = ${organizationIndex} and roleIndex = ${roleIndex} and userIndex = ${userIndex})
+	</select>
+	<delete id="userRoleDelete" parameterType = "com.pyyh.ms.manager.business.pojos.UserRolePojo">
+		delete from tb_user_role where organizationIndex = ${organizationIndex} and userIndex = ${userIndex}
+		<if test="roleIndex != null and roleIndex != ''">
+			and roleIndex = ${roleIndex}
+		</if>
+	</delete>
+</mapper>
