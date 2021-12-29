@@ -31,11 +31,11 @@ CREATE TABLE `tb_modularmenu` (
   `uiName` varchar(20) DEFAULT NULL,
   `isForward` tinyint(1) DEFAULT '1' COMMENT '是否可跳转页面0:不可跳转1:跳转',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_modularmenu` */
 
-insert  into `tb_modularmenu`(`id`,`modularName`,`parentId`,`modularLevel`,`modularIndex`,`url`,`icon`,`uiName`,`isForward`) values (1,'数据接入',0,'0',1,NULL,NULL,NULL,0),(2,'综合监测',0,'0',2,NULL,NULL,NULL,0),(3,'异常预警',0,'0',3,NULL,NULL,NULL,0),(4,'风险研判',0,'0',4,NULL,NULL,NULL,0),(5,'趋势分析',0,'0',5,NULL,NULL,NULL,0),(6,'承诺公告',0,'0',6,NULL,NULL,NULL,0),(7,'综合评估',0,'0',7,NULL,NULL,NULL,0),(8,'基础数据',1,'1',1,'user',NULL,NULL,0),(9,'生产状态与隐患监察',1,'1',2,NULL,NULL,NULL,0),(10,'感知信息',1,'1',3,NULL,NULL,NULL,0),(11,'视频图像',1,'1',4,NULL,NULL,NULL,0),(12,'共享数据',1,'1',5,NULL,NULL,NULL,0),(13,'数据传输',1,'1',6,NULL,NULL,NULL,0),(14,'企业分布',2,'1',1,NULL,NULL,NULL,0),(15,'基础信息报警预警',3,'1',1,NULL,NULL,NULL,0),(16,'感知数据报警预警',3,'1',2,NULL,NULL,NULL,0),(17,'设备运行状态报警预警',3,'1',3,NULL,NULL,NULL,0),(18,'企业风险研判',4,'1',1,NULL,NULL,NULL,0),(19,'区域风险研判',4,'1',2,NULL,NULL,NULL,0),(20,'企业风险趋势',5,'1',1,NULL,NULL,NULL,0),(21,'区域风险趋势',5,'1',2,NULL,NULL,NULL,0),(22,'安全承诺公告',6,'1',1,NULL,NULL,NULL,0),(23,'安全承诺公告统计',6,'1',2,NULL,NULL,NULL,0),(24,'企业数量变化情况',7,'1',1,NULL,NULL,NULL,0),(25,'系统联网在线情况',7,'1',2,NULL,NULL,NULL,0),(26,'视频在线情况',7,'1',3,NULL,NULL,NULL,0),(27,'感知设备在线情况',7,'1',4,NULL,NULL,NULL,0),(28,'报警处置情况',7,'1',5,NULL,NULL,NULL,0),(29,'企业相关证书情况',7,'1',6,NULL,NULL,NULL,0),(30,'第三方报告情况',7,'1',7,NULL,NULL,NULL,0),(31,'风险变化历史趋势',7,'1',8,NULL,NULL,NULL,0),(32,'定期分析报告',7,'1',9,NULL,NULL,NULL,0),(33,'专项监管监察',7,'1',10,NULL,NULL,NULL,0),(34,'企业信息',8,'2',1,NULL,NULL,NULL,0),(35,'许可证信息',8,'2',2,NULL,NULL,NULL,0),(36,'工库房信息',8,'2',3,NULL,NULL,NULL,0),(37,'设备信息',8,'2',4,NULL,NULL,NULL,0),(38,'人员信息',8,'2',5,NULL,NULL,NULL,0),(39,'第三方单位信息',8,'2',6,NULL,NULL,NULL,0),(40,'生产状态信息',9,'2',1,NULL,NULL,NULL,0),(41,'安全隐患信息',9,'2',2,NULL,NULL,NULL,0),(42,'监管检查数据',9,'2',3,NULL,NULL,NULL,0),(43,'事故时间信息',9,'2',4,NULL,NULL,NULL,0),(44,'温度传感器',10,'2',1,NULL,NULL,NULL,0),(45,'湿度传感器',10,'2',2,NULL,NULL,NULL,0),(46,'静电释放传感器',10,'2',3,NULL,NULL,NULL,0),(47,'气象数据',12,'2',1,NULL,NULL,NULL,0),(48,'周边环境数据',12,'2',2,NULL,NULL,NULL,0),(49,'首页',0,'0',8,'/','home',NULL,1),(50,'安全管理',0,'0',9,'/security','security',NULL,0),(51,'设置',0,'0',10,'/set','sz',NULL,0),(52,'用户管理',50,'1',1,'/user','user',NULL,1),(53,'权限管理',50,'1',2,'/jurisdiction','qx',NULL,1),(54,'日志管理',50,'1',3,'/log','log',NULL,1),(55,'门禁管理',51,'1',1,'/door','mjgl',NULL,1),(56,'人员设置',51,'1',2,'/personnel','rysz',NULL,1),(57,'人证合一',51,'1',3,'/certificate','rxhy',NULL,1),(58,'人证合一记录',51,'1',4,'/certificateInfo','rzjl',NULL,1),(59,'配置管理',51,'1',5,'/configure','pzgl',NULL,1),(60,'资源管理',0,'0',11,'/resource','zygl',NULL,0),(61,'企业信息',60,'1',1,'/enterpriseInfo','qyxx',NULL,1),(62,'监控场所',60,'1',2,'/monitoring','jkcs',NULL,1),(63,'库房名称/生产车间',60,'1',3,'/workshop','kfmc',NULL,1),(64,'设备管理',60,'1',4,'/device','device',NULL,1),(65,'设备类型管理',60,'1',5,'/deviceType','sblx',NULL,1),(66,'设备详情',60,'1',6,'/deviceDetails','sbxq',NULL,1),(67,'点位管理',0,'0',12,'/point','dwgl',NULL,0),(68,'风险管控',0,'0',13,'/risk','fxgk',NULL,0),(69,'隐患治理',0,'0',14,'/hiddenDanger','yhzl',NULL,0),(70,'告警管理',0,'0',15,'/alarm','gjgl',NULL,0),(71,'分组管理',67,'1',1,'/group','fzgl',NULL,1),(72,'数据字典',67,'1',2,NULL,NULL,NULL,0),(73,'摄像头',67,'1',3,'/camera','sxt',NULL,1),(74,'巡检任务',68,'1',1,'/inspection','xjrw',NULL,1),(75,'风险查看',68,'1',2,'/riskView','fxck',NULL,1),(76,'派单',69,'1',1,'/order','pd',NULL,1),(77,'隐患治理',69,'1',2,'/danger','yhzl',NULL,1),(78,'告警处理',70,'1',1,'/alarmHandling','gjgl',NULL,1),(79,'t5',0,'0',1,NULL,NULL,NULL,0),(80,'t6',79,'1',1,NULL,NULL,NULL,0),(81,'t7',80,'2',1,NULL,NULL,NULL,0),(82,'t8',81,'3',1,NULL,NULL,NULL,1),(83,'t9',81,'3',2,NULL,NULL,NULL,1),(84,'超限告警统计',0,'0',16,'/overrunAlarm','gjgl',NULL,1),(86,'温度告警统计',0,'0',17,'/temAlarm','gjgl',NULL,1),(87,'湿度告警统计',0,'0',18,'/humidityAlarm','gjgl',NULL,1),(88,'静电释放告警统计',0,'0',19,'/staticAlarm','gjgl',NULL,1);
+insert  into `tb_modularmenu`(`id`,`modularName`,`parentId`,`modularLevel`,`modularIndex`,`url`,`icon`,`uiName`,`isForward`) values (89,'t1',1,'1',1,NULL,NULL,NULL,1),(90,'t11',89,'2',1,NULL,NULL,NULL,1),(91,'a1',90,'3',1,NULL,NULL,NULL,1),(92,'a11',1,'1',2,NULL,NULL,NULL,1),(93,NULL,1,'1',3,NULL,NULL,NULL,1);
 
 /*Table structure for table `tb_organization` */
 
@@ -45,15 +45,15 @@ CREATE TABLE `tb_organization` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `organizationName` varchar(100) DEFAULT NULL COMMENT '组织/公司名称',
   `organizationCode` varchar(7) DEFAULT NULL,
-  `organizationLevel` int(11) DEFAULT NULL COMMENT '组织级别1表示本级，有子级的 本级用0表示【不显示本级】',
+  `organizationLevel` int(11) DEFAULT NULL,
   `parentOrganizationCode` varchar(7) DEFAULT NULL,
-  `districtIndex` int(11) DEFAULT NULL,
+  `district` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_organization` */
 
-insert  into `tb_organization`(`id`,`organizationName`,`organizationCode`,`organizationLevel`,`parentOrganizationCode`,`districtIndex`) values (5,'shbd','0000014',3,'0000016',NULL),(6,'江苏','000001',1,'0000000',2015),(7,'aed','0000015',3,'0000017',NULL),(8,'a1','0000016',2,'000001',NULL),(9,'b1','0000017',2,'000001',NULL);
+insert  into `tb_organization`(`id`,`organizationName`,`organizationCode`,`organizationLevel`,`parentOrganizationCode`,`district`) values (5,'shbd','0000014',3,'0000016',NULL),(6,'江苏','000001',1,'0000000','2015'),(7,'aed','0000015',3,'0000017',NULL),(8,'111','222',33,'44','55'),(9,'b1','0000017',2,'000001',NULL),(10,'11','22',33,'44','55'),(12,'111','222',33,'44','55');
 
 /*Table structure for table `tb_role` */
 
@@ -74,7 +74,7 @@ CREATE TABLE `tb_role` (
 
 /*Data for the table `tb_role` */
 
-insert  into `tb_role`(`id`,`roleName`,`organizationIndex`,`organizationCode`,`c_describe`,`createDateTime`,`modifyDateTime`,`createAccount`,`modifyAccount`) values (18,'测试',5,NULL,'111','2021-09-22 16:02:30',NULL,'5',NULL),(19,'333',5,NULL,'22',NULL,NULL,NULL,NULL),(20,'33',5,NULL,'','2021-09-24 16:18:13',NULL,'5',NULL),(21,'政府',6,NULL,'11',NULL,NULL,NULL,NULL),(22,'r1',0,'r2','ddd',NULL,NULL,NULL,NULL),(25,'r3',0,'r1','ddd',NULL,NULL,NULL,NULL),(26,'r3',0,'r2','ddd',NULL,NULL,NULL,NULL);
+insert  into `tb_role`(`id`,`roleName`,`organizationIndex`,`organizationCode`,`c_describe`,`createDateTime`,`modifyDateTime`,`createAccount`,`modifyAccount`) values (18,'1',5,'1',NULL,'2021-09-22 16:02:30',NULL,'5',NULL),(19,'2',5,'2',NULL,NULL,NULL,NULL,NULL),(20,'3',5,'3',NULL,'2021-09-24 16:18:13',NULL,'5',NULL),(21,'4',6,'3',NULL,NULL,NULL,NULL,NULL),(22,'5',0,'3',NULL,NULL,NULL,NULL,NULL),(25,'6',0,'6',NULL,NULL,NULL,NULL,NULL),(26,'7',0,'6',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `tb_role_modular` */
 
@@ -123,11 +123,11 @@ CREATE TABLE `tb_user_role` (
   `roleIndex` int(11) DEFAULT NULL COMMENT '角色索引',
   `userIndex` int(11) DEFAULT NULL COMMENT '用户索引',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_user_role` */
 
-insert  into `tb_user_role`(`id`,`organizationIndex`,`roleIndex`,`userIndex`) values (12,5,50,18),(13,5,53,18),(14,6,84,21),(19,0,18,10),(20,0,19,10),(21,0,20,10),(22,0,21,10),(30,0,18,11),(31,0,19,11),(32,0,20,11);
+insert  into `tb_user_role`(`id`,`organizationIndex`,`roleIndex`,`userIndex`) values (14,6,84,21),(30,0,18,11),(31,0,19,11),(32,0,20,11),(33,1,2,3),(34,11,2,3);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
