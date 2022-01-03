@@ -49,7 +49,6 @@ public class ModularMenuServiceImp implements IModularMenuService{
 		ResponsePojo rp = new ResponsePojo();
 		if(mmDao.modularMenuExists(mmp) == 0){
 			mmDao.modularMenuAdd(mmp);
-			System.out.println(mmp.getId());
 			rp.setState("success");
 			rp.setMessage("模块菜单添加成功!");
 		}else{
