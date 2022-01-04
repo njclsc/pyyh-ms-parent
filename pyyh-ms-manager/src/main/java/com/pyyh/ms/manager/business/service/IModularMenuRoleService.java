@@ -5,4 +5,5 @@ import com.pyyh.ms.manager.business.pojos.ModularMenuRolePojo;
 public interface IModularMenuRoleService {
 
 	public String modularMenuRoleAdd(ModularMenuRolePojo mmp);
+	public String modularMenuRoleDelete(ModularMenuRolePojo mmp);
 }

@@ -20,4 +20,8 @@ public class ModularMenuRoleController {
 	public String modularMenuRoleAdd(@RequestBody ModularMenuRolePojo mmp){
 		return mmrService.modularMenuRoleAdd(mmp);
 	}
+	@RequestMapping("delete")
+	public String modularMenuRoleDelete(@RequestBody ModularMenuRolePojo mmp){
+		return mmrService.modularMenuRoleDelete(mmp);
+	}
 }

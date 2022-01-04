@@ -27,5 +27,14 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 		}
 		return JSONObject.toJSONString(rp);
 	}
+	@Override
+	public String modularMenuRoleDelete(ModularMenuRolePojo mmp) {
+		// TODO Auto-generated method stub
+		ResponsePojo rp = new ResponsePojo();
+		mmrDao.modularMenuRoleDelete(mmp);
+		rp.setState("success");
+		rp.setMessage("模块菜单与角色关系删除成功!");
+		return JSONObject.toJSONString(rp);
+	}
 
 }
