@@ -23,19 +23,19 @@ DROP TABLE IF EXISTS `tb_modularmenu`;
 CREATE TABLE `tb_modularmenu` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `modularName` varchar(30) DEFAULT NULL,
-  `parentId` int(11) DEFAULT '-1',
+  `parentId` int(11) DEFAULT '-1' COMMENT '模块父级菜单索引没有父级用1表示',
   `modularLevel` varchar(10) DEFAULT NULL COMMENT '模块菜单在UI中的第几级',
   `modularIndex` int(11) DEFAULT NULL COMMENT '相同级数中的索引位置',
   `url` varchar(200) DEFAULT NULL COMMENT '对应的后台地址',
   `icon` varchar(20) DEFAULT NULL,
   `uiName` varchar(20) DEFAULT NULL,
-  `isForward` tinyint(1) DEFAULT '1' COMMENT '是否可跳转页面0:不可跳转1:跳转',
+  `isAction` tinyint(1) DEFAULT '0' COMMENT '是否是可操作菜单0:不是 1:是',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_modularmenu` */
 
-insert  into `tb_modularmenu`(`id`,`modularName`,`parentId`,`modularLevel`,`modularIndex`,`url`,`icon`,`uiName`,`isForward`) values (89,'t1',1,'1',1,NULL,NULL,NULL,1),(90,'t11',89,'2',1,NULL,NULL,NULL,1),(91,'a1',90,'3',1,NULL,NULL,NULL,1),(92,'a11',1,'1',2,NULL,NULL,NULL,1),(93,NULL,1,'1',3,NULL,NULL,NULL,1);
+insert  into `tb_modularmenu`(`id`,`modularName`,`parentId`,`modularLevel`,`modularIndex`,`url`,`icon`,`uiName`,`isAction`) values (89,'t1',1,'1',1,NULL,NULL,NULL,0),(90,'t11',89,'2',1,NULL,NULL,NULL,0),(91,'a1',90,'3',1,NULL,NULL,NULL,1),(92,'a11',90,'3',2,NULL,NULL,NULL,1);
 
 /*Table structure for table `tb_organization` */
 
@@ -86,11 +86,9 @@ CREATE TABLE `tb_role_modular` (
   `modularIndex` int(11) DEFAULT NULL,
   `organizationIndex` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=472 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_role_modular` */
-
-insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (235,0,70,5),(393,1,72,5),(410,1,84,5),(441,18,57,5),(442,18,58,5),(443,18,59,5),(444,18,70,5),(445,18,53,5),(446,18,76,5),(447,18,54,5),(448,18,75,5),(449,18,55,5),(450,18,78,5),(451,18,56,5),(452,18,77,5),(453,18,50,5),(454,18,71,5),(455,18,51,5),(456,18,74,5),(457,18,73,5),(458,18,52,5),(459,18,49,5),(460,18,68,5),(461,18,69,5),(462,18,64,5),(463,18,65,5),(464,18,66,5),(465,18,67,5),(466,18,60,5),(467,18,61,5),(468,18,62,5),(469,18,63,5),(470,1,84,5),(471,1,86,5);
 
 /*Table structure for table `tb_user` */
 
