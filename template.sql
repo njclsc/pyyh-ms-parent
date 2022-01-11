@@ -31,7 +31,7 @@ CREATE TABLE `tb_modularmenu` (
   `uiName` varchar(20) DEFAULT NULL,
   `isAction` tinyint(1) DEFAULT '0' COMMENT '是否是可操作菜单0:不是 1:是',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_modularmenu` */
 
@@ -86,9 +86,11 @@ CREATE TABLE `tb_role_modular` (
   `modularIndex` int(11) DEFAULT NULL,
   `organizationIndex` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_role_modular` */
+
+insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,NULL);
 
 /*Table structure for table `tb_user` */
 
@@ -109,7 +111,7 @@ CREATE TABLE `tb_user` (
 
 /*Data for the table `tb_user` */
 
-insert  into `tb_user`(`id`,`account`,`password`,`organizationIndex`,`organizationCode`,`createAccount`,`modifyAccount`,`createDateTime`,`modifyDateTime`) values (13,'p1','p2',NULL,'p3',NULL,NULL,NULL,NULL),(14,'x','a',NULL,'b','c',NULL,'d',NULL),(16,'x','a',NULL,'b','c',NULL,'d',NULL),(17,'x6','qqq4',NULL,'b','c','x6','d','tttt'),(18,'x1','a',NULL,'b','c',NULL,'d',NULL),(21,'x31','qqq4',NULL,'b','c','x6','d','tttt'),(22,'x31','qqq4',NULL,'bs','c','x6','d','tttt');
+insert  into `tb_user`(`id`,`account`,`password`,`organizationIndex`,`organizationCode`,`createAccount`,`modifyAccount`,`createDateTime`,`modifyDateTime`) values (13,'p1','p2',5,'0000014',NULL,NULL,NULL,NULL),(14,'x','a',NULL,'b','c',NULL,'d',NULL),(16,'x','a',NULL,'b','c',NULL,'d',NULL),(17,'x6','qqq4',NULL,'b','c','x6','d','tttt'),(18,'x1','a',NULL,'b','c',NULL,'d',NULL),(21,'x31','qqq4',NULL,'b','c','x6','d','tttt'),(22,'x31','qqq4',NULL,'bs','c','x6','d','tttt');
 
 /*Table structure for table `tb_user_role` */
 
@@ -125,7 +127,7 @@ CREATE TABLE `tb_user_role` (
 
 /*Data for the table `tb_user_role` */
 
-insert  into `tb_user_role`(`id`,`organizationIndex`,`roleIndex`,`userIndex`) values (14,6,84,21),(30,0,18,11),(31,0,19,11),(32,0,20,11),(33,1,2,3),(34,11,2,3);
+insert  into `tb_user_role`(`id`,`organizationIndex`,`roleIndex`,`userIndex`) values (14,5,18,13),(30,0,18,11),(31,0,19,11),(32,0,20,11),(33,1,2,3),(34,11,2,3);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

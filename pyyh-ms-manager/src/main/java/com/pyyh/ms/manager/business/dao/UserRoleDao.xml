@@ -16,4 +16,7 @@
 			and roleIndex = ${roleIndex}
 		</if>
 	</delete>
+	<select id="userRoleFind" parameterType = "com.pyyh.ms.manager.business.pojos.UserRolePojo" resultType = "com.pyyh.ms.manager.business.pojos.UserRolePojo">
+	
+	</select>
 </mapper>

@@ -5,6 +5,9 @@ public class UserRolePojo {
 	private int organizationIndex;
 	private int roleIndex;
 	private int userIndex;
+	private String organizationName;
+	private String roleName;
+	private String account;
 	private int page;
 	private int rows;
 	private int begin;
@@ -40,6 +43,24 @@ public class UserRolePojo {
 	}
 	public int getRoleIndex() {
 		return roleIndex;
+	}
+	public String getOrganizationName() {
+		return organizationName;
+	}
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
 	}
 	public void setRoleIndex(int roleIndex) {
 		this.roleIndex = roleIndex;

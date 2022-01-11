@@ -1,5 +1,7 @@
 package com.pyyh.ms.manager.business.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,5 +25,9 @@ public class ModularMenuRoleController {
 	@RequestMapping("delete")
 	public String modularMenuRoleDelete(@RequestBody ModularMenuRolePojo mmp){
 		return mmrService.modularMenuRoleDelete(mmp);
+	}
+	@RequestMapping("modularMenuRoleLoad")
+	public String modularMenuRoleLoad(HttpServletRequest request){
+		return mmrService.modularMenuRoleLoad(request);
 	}
 }
