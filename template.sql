@@ -90,7 +90,7 @@ CREATE TABLE `tb_role_modular` (
 
 /*Data for the table `tb_role_modular` */
 
-insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,NULL);
+insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,5);
 
 /*Table structure for table `tb_user` */
 
@@ -127,7 +127,7 @@ CREATE TABLE `tb_user_role` (
 
 /*Data for the table `tb_user_role` */
 
-insert  into `tb_user_role`(`id`,`organizationIndex`,`roleIndex`,`userIndex`) values (14,5,18,13),(30,0,18,11),(31,0,19,11),(32,0,20,11),(33,1,2,3),(34,11,2,3);
+insert  into `tb_user_role`(`id`,`organizationIndex`,`roleIndex`,`userIndex`) values (14,5,18,13),(30,0,18,11),(31,5,19,13),(32,0,20,11),(33,1,2,3),(34,11,2,3);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

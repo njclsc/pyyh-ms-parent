@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pyyh.ms.manager.business.dao.IModularMenuRoleDao;
+import com.pyyh.ms.manager.business.dao.IOrganizationDao;
 import com.pyyh.ms.manager.business.dao.IUserDao;
+import com.pyyh.ms.manager.business.dao.IUserRoleDao;
 import com.pyyh.ms.manager.business.pojos.ModularMenuRolePojo;
+import com.pyyh.ms.manager.business.pojos.OrganizationPojo;
 import com.pyyh.ms.manager.business.pojos.UserPojo;
+import com.pyyh.ms.manager.business.pojos.UserRolePojo;
 import com.pyyh.ms.manager.business.service.IModularMenuRoleService;
 import com.pyyh.ms.manager.configer.ProjectConfig;
 import com.pyyh.ms.manager.pojos.ResponsePojo;
@@ -22,6 +26,10 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 	private IModularMenuRoleDao mmrDao;
 	@Autowired
 	private IUserDao userDao;
+	@Autowired
+	private IOrganizationDao organizationDao;
+	@Autowired
+	private IUserRoleDao userRoleDao;
 	@Override
 	public String modularMenuRoleAdd(ModularMenuRolePojo mmp) {
 		// TODO Auto-generated method stub
@@ -54,9 +62,19 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 		UserPojo user = new UserPojo();
 		user.setAccount(json.getString("account"));
 		user.setOrganizationCode(json.getString("organizationCode"));
+		OrganizationPojo op = new OrganizationPojo();
+		op.setOrganizationCode(user.getOrganizationCode());
+		OrganizationPojo _op = organizationDao.organizationFind(op).get(0);
 		List<UserPojo> users = userDao.userFind(user);
 		UserPojo _up = users.get(0);
-		System.out.println(_up.getId());
+		UserRolePojo urp = new UserRolePojo();
+		urp.setOrganizationIndex(_op.getId());
+		urp.setUserIndex(_up.getId());
+		List<UserRolePojo> urps = userRoleDao.userRoleFind(urp);
+		for(UserRolePojo _urp : urps){
+			System.out.println(_urp.getRoleIndex());
+		}
+		System.out.println(_up.getId() + "   " + _op.getId());
 		return null;
 	}
 

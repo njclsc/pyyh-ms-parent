@@ -17,6 +17,15 @@
 		</if>
 	</delete>
 	<select id="userRoleFind" parameterType = "com.pyyh.ms.manager.business.pojos.UserRolePojo" resultType = "com.pyyh.ms.manager.business.pojos.UserRolePojo">
-	
+		select * from tb_user_role where 1 = 1
+		<if test="organizationIndex != null and organizationIndex != ''">
+			and organizationIndex = ${organizationIndex}
+		</if>
+		<if test="roleIndex != null and roleIndex != ''">
+			and roleIndex = ${roleIndex}
+		</if>
+		<if test="userIndex != null and userIndex != ''">
+			and userIndex = ${userIndex}
+		</if>
 	</select>
 </mapper>
