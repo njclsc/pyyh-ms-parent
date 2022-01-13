@@ -70,11 +70,16 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 		UserRolePojo urp = new UserRolePojo();
 		urp.setOrganizationIndex(_op.getId());
 		urp.setUserIndex(_up.getId());
+		ModularMenuRolePojo mmrp = new ModularMenuRolePojo();
 		List<UserRolePojo> urps = userRoleDao.userRoleFind(urp);
-		for(UserRolePojo _urp : urps){
-			System.out.println(_urp.getRoleIndex());
+		mmrp.setRoleIndexes(new int[urps.size()]);
+		for(int i = 0; i < urps.size(); i++){
+			mmrp.getRoleIndexes()[i] = urps.get(i).getRoleIndex();
 		}
-		System.out.println(_up.getId() + "   " + _op.getId());
+		System.out.println(mmrp.getRoleIndexes()[0] + "   " + mmrp.getRoleIndexes()[1]);
+		
+		/*加载角色对应最底模块 
+		 * */
 		return null;
 	}
 

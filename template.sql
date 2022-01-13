@@ -86,11 +86,11 @@ CREATE TABLE `tb_role_modular` (
   `modularIndex` int(11) DEFAULT NULL,
   `organizationIndex` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_role_modular` */
 
-insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,5);
+insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,5),(2,19,91,5);
 
 /*Table structure for table `tb_user` */
 

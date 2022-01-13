@@ -5,6 +5,7 @@ public class ModularMenuRolePojo {
 	private int roleIndex;
 	private int modularIndex;
 	private int organizationIndex;
+	private int[] roleIndexes;
 	public int getId() {
 		return id;
 	}
@@ -19,6 +20,12 @@ public class ModularMenuRolePojo {
 	}
 	public int getModularIndex() {
 		return modularIndex;
+	}
+	public int[] getRoleIndexes() {
+		return roleIndexes;
+	}
+	public void setRoleIndexes(int[] roleIndexes) {
+		this.roleIndexes = roleIndexes;
 	}
 	public void setModularIndex(int modularIndex) {
 		this.modularIndex = modularIndex;

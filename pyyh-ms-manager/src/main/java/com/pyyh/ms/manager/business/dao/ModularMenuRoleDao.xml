@@ -11,4 +11,5 @@
 	<delete id="modularMenuRoleDelete" parameterType = "com.pyyh.ms.manager.business.pojos.ModularMenuRolePojo">
 		delete from tb_role_modular where roleIndex = ${roleIndex} and modularIndex = ${modularIndex} and organizationIndex = ${organizationIndex}
 	</delete>
+	<select id = "modularMenuRoleFind" parameterType = "com.pyyh.ms.manager.business.pojos.ModularMenuRolePojo" resultType = "com.pyyh.ms.manager.business.pojos.ModularMenuPojo"></select>
 </mapper>
