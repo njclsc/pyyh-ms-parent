@@ -12,8 +12,13 @@
 		delete from tb_role_modular where roleIndex = ${roleIndex} and modularIndex = ${modularIndex} and organizationIndex = ${organizationIndex}
 	</delete>
 	<select id = "modularMenuRoleFind" parameterType = "com.pyyh.ms.manager.business.pojos.ModularMenuRolePojo" resultType = "com.pyyh.ms.manager.business.pojos.ModularMenuPojo">
-		select * from tb_role_modular 
+		select tb_modularmenu.id, tb_modularmenu.modularName,tb_modularmenu.parentId,tb_modularmenu.modularLevel,
+			tb_modularmenu.modularIndex,tb_modularmenu.url,tb_modularmenu.icon,tb_modularmenu.uiName,tb_modularmenu.isAction 
+		from tb_role_modular 
 		left join tb_modularmenu on tb_role_modular.modularIndex = tb_modularmenu.id
-		where tb_role_modular.roleIndex in (18, 19)
+		where tb_role_modular.roleIndex in 
+		<foreach collection="roleIndexes" index = "index" item = "item" open = "(" separator = "," close = ")">
+			${item}
+		</foreach>
 	</select>
 </mapper>

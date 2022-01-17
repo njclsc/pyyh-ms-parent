@@ -12,6 +12,7 @@ import com.pyyh.ms.manager.business.dao.IModularMenuRoleDao;
 import com.pyyh.ms.manager.business.dao.IOrganizationDao;
 import com.pyyh.ms.manager.business.dao.IUserDao;
 import com.pyyh.ms.manager.business.dao.IUserRoleDao;
+import com.pyyh.ms.manager.business.pojos.ModularMenuPojo;
 import com.pyyh.ms.manager.business.pojos.ModularMenuRolePojo;
 import com.pyyh.ms.manager.business.pojos.OrganizationPojo;
 import com.pyyh.ms.manager.business.pojos.UserPojo;
@@ -76,9 +77,13 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 		for(int i = 0; i < urps.size(); i++){
 			mmrp.getRoleIndexes()[i] = urps.get(i).getRoleIndex();
 		}
-		System.out.println(mmrp.getRoleIndexes()[0] + "   " + mmrp.getRoleIndexes()[1]);
-		
 		/*加载角色对应最底模块 
+		 * */
+		List<ModularMenuPojo> mmps = mmrDao.modularMenuRoleFind(mmrp);
+		for(ModularMenuPojo mmp : mmps){
+			System.out.println(mmp.getId() + "  " + mmp.getModularName());
+		}
+		/*本级，父级模块菜单排序 
 		 * */
 		return null;
 	}
