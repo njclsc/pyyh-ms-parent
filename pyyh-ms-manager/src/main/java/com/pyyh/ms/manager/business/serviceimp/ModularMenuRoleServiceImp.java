@@ -81,11 +81,31 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 		 * */
 		List<ModularMenuPojo> mmps = mmrDao.modularMenuRoleFind(mmrp);
 		for(ModularMenuPojo mmp : mmps){
-			System.out.println(mmp.getId() + "  " + mmp.getModularName());
+			System.out.println(mmp.getId() + "  " + mmp.getModularName() + "  " + mmp.getParentId());
 		}
-		/*本级，父级模块菜单排序 
+		/*加载完整菜单 
 		 * */
-		return null;
+		ModularMenuPojo mmp1 = new ModularMenuPojo();
+		mmp1.setParentId(1);
+		mmp1.setModularLevel(1);
+		List<ModularMenuPojo> mmps1 = mmrDao.modularMenuFind(mmp1);
+		List<ModularMenuPojo> mmpFull = loadModularTree(mmps1);
+		/*1：有权限菜单加入缓存
+		 * 2：迭代全菜单集合：
+		 * 	2.1：如果迭代获取的菜单项的子项集合为空，说明是最后一级菜单，比较是否在权限菜单里面。
+		 * 		 没有就删除，
+		 *  2.2：如果最后一级菜单都没有在权限菜单中，那么把此顶级菜单项删除
+		 * */
+		return JSONObject.toJSONString(mmpFull);
 	}
-
+	private List<ModularMenuPojo> loadModularTree(List<ModularMenuPojo> mmps){
+		for(ModularMenuPojo mmp : mmps){
+			ModularMenuPojo mmp1 = new ModularMenuPojo();
+			mmp1.setParentId(mmp.getId());
+			List<ModularMenuPojo> mmps1 = mmrDao.modularMenuFind(mmp1);
+			mmp.setChildren(mmps1);
+			loadModularTree(mmps1);
+		}
+		return mmps;
+	}
 }

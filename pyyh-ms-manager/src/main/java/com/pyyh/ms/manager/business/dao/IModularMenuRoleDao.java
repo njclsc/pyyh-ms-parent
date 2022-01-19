@@ -12,4 +12,5 @@ public interface IModularMenuRoleDao {
 	public void modularMenuRoleDelete(ModularMenuRolePojo mmp);
 	public List<ModularMenuPojo> modularMenuRoleFind(ModularMenuRolePojo mmp);
 	public int modularMenuRoleExists(ModularMenuRolePojo mmp);
+	public List<ModularMenuPojo> modularMenuFind(ModularMenuPojo mmp);
 }

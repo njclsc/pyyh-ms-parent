@@ -21,4 +21,17 @@
 			${item}
 		</foreach>
 	</select>
+	<select id="modularMenuFind" parameterType = "com.pyyh.ms.manager.business.pojos.ModularMenuPojo" resultType = "com.pyyh.ms.manager.business.pojos.ModularMenuPojo">
+		select * from tb_modularmenu where 1 = 1
+		<if test="id != null and id != ''">
+			and id = ${parentId}
+		</if>
+		<if test="parentId != null and parentId != ''">
+			and parentId = ${parentId}
+		</if>
+		<if test="modularLevel != null and modularLevel != ''">
+			and modularLevel = ${modularLevel}
+		</if>
+		order by modularIndex asc
+	</select>
 </mapper>
