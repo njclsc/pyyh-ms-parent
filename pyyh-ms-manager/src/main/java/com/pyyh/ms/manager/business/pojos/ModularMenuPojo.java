@@ -11,6 +11,7 @@ public class ModularMenuPojo {
 	private String url;
 	private String icon;
 	private String uiName;
+	private int isAction;
 	private List<ModularMenuPojo> children;
 	public List<ModularMenuPojo> getChildren() {
 		return children;
@@ -20,6 +21,12 @@ public class ModularMenuPojo {
 	}
 	public int getId() {
 		return id;
+	}
+	public int getIsAction() {
+		return isAction;
+	}
+	public void setIsAction(int isAction) {
+		this.isAction = isAction;
 	}
 	public void setId(int id) {
 		this.id = id;

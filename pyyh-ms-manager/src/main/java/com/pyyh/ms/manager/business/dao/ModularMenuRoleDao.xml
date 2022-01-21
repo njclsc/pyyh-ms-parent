@@ -32,6 +32,6 @@
 		<if test="modularLevel != null and modularLevel != ''">
 			and modularLevel = ${modularLevel}
 		</if>
-		order by modularIndex asc
+		order by modularLevel, modularIndex asc
 	</select>
 </mapper>

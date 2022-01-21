@@ -1,5 +1,7 @@
 package com.pyyh.ms.manager.business.serviceimp;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,13 +82,15 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 		/*加载角色对应最底模块 
 		 * */
 		List<ModularMenuPojo> mmps = mmrDao.modularMenuRoleFind(mmrp);
+		HashSet<String> auth = new HashSet<String>();
 		for(ModularMenuPojo mmp : mmps){
 			System.out.println(mmp.getId() + "  " + mmp.getModularName() + "  " + mmp.getParentId());
+			auth.add("" + mmp.getId());
 		}
 		/*加载完整菜单 
 		 * */
 		ModularMenuPojo mmp1 = new ModularMenuPojo();
-		mmp1.setParentId(1);
+		mmp1.setParentId(0);
 		mmp1.setModularLevel(1);
 		List<ModularMenuPojo> mmps1 = mmrDao.modularMenuFind(mmp1);
 		List<ModularMenuPojo> mmpFull = loadModularTree(mmps1);
@@ -96,7 +100,50 @@ public class ModularMenuRoleServiceImp implements IModularMenuRoleService{
 		 * 		 没有就删除，
 		 *  2.2：如果最后一级菜单都没有在权限菜单中，那么把此顶级菜单项删除
 		 * */
+		mmpFull = updateModularTree(mmpFull, auth);
+		mmpFull = updateModularTree1(mmpFull);
 		return JSONObject.toJSONString(mmpFull);
+	}
+	private List<ModularMenuPojo> updateModularTree1(List<ModularMenuPojo> mmpFull){
+		Iterator<ModularMenuPojo> itr = mmpFull.iterator();
+		while(itr.hasNext()){
+			ModularMenuPojo mmp = itr.next();
+			List<ModularMenuPojo> mmps1 = mmp.getChildren();
+			if(mmps1.size() < 1 && mmp.getIsAction() == 0){
+				System.out.println(mmp.getModularName());
+				itr.remove();
+			}else{
+				updateModularTree1(mmps1);
+			}
+		}
+		//最外层删除
+		Iterator<ModularMenuPojo> itr1 = mmpFull.iterator();
+		while(itr1.hasNext()){
+			ModularMenuPojo mmp = itr1.next();
+			List<ModularMenuPojo> mmps1 = mmp.getChildren();
+			if(mmps1.size() < 1 && mmp.getIsAction() == 0){
+				System.out.println(mmp.getModularName());
+				itr1.remove();
+			}else{
+				updateModularTree1(mmps1);
+			}
+		}
+		
+		return mmpFull;
+	}
+	private List<ModularMenuPojo> updateModularTree(List<ModularMenuPojo> menu, HashSet<String> auth){
+		Iterator<ModularMenuPojo> itr = menu.iterator();
+		while(itr.hasNext()){
+			ModularMenuPojo mmp = itr.next();
+			List<ModularMenuPojo> mmps1 = mmp.getChildren();
+			//是否最底菜单 是就删除，不是继续递归
+			if(mmps1.size() < 1 && !auth.contains(("" + mmp.getId()))){
+				itr.remove();
+			}else{
+				updateModularTree(mmps1, auth);
+			}
+		}
+		return menu;
 	}
 	private List<ModularMenuPojo> loadModularTree(List<ModularMenuPojo> mmps){
 		for(ModularMenuPojo mmp : mmps){
