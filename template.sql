@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.08 (64 bit)
-MySQL - 5.6.25 : Database - template
+MySQL - 5.6.25-log : Database - template
 *********************************************************************
 */
 
@@ -31,11 +31,11 @@ CREATE TABLE `tb_modularmenu` (
   `uiName` varchar(20) DEFAULT NULL,
   `isAction` tinyint(1) DEFAULT '0' COMMENT '是否是可操作菜单0:不是 1:是',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_modularmenu` */
 
-insert  into `tb_modularmenu`(`id`,`modularName`,`parentId`,`modularLevel`,`modularIndex`,`url`,`icon`,`uiName`,`isAction`) values (89,'t1',1,'1',1,NULL,NULL,NULL,0),(90,'t11',89,'2',1,NULL,NULL,NULL,0),(91,'a1',90,'3',1,NULL,NULL,NULL,1),(92,'a11',90,'3',2,NULL,NULL,NULL,1);
+insert  into `tb_modularmenu`(`id`,`modularName`,`parentId`,`modularLevel`,`modularIndex`,`url`,`icon`,`uiName`,`isAction`) values (89,'t1',0,'1',1,NULL,NULL,NULL,0),(90,'t11',89,'2',1,NULL,NULL,NULL,0),(91,'a1',90,'3',1,NULL,NULL,NULL,1),(92,'a11',90,'3',2,NULL,NULL,NULL,1),(93,'a111',90,'3',3,NULL,NULL,NULL,1),(94,'t2',0,'1',2,NULL,NULL,NULL,0),(95,'t22',94,'2',1,NULL,NULL,NULL,0),(96,'t222',94,'2',2,NULL,NULL,NULL,0),(97,'a2',96,'3',1,NULL,NULL,NULL,1);
 
 /*Table structure for table `tb_organization` */
 
@@ -86,11 +86,11 @@ CREATE TABLE `tb_role_modular` (
   `modularIndex` int(11) DEFAULT NULL,
   `organizationIndex` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_role_modular` */
 
-insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,5),(2,19,91,5);
+insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,5),(2,19,91,5),(4,200,97,5);
 
 /*Table structure for table `tb_user` */
 
