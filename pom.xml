@@ -145,5 +145,6 @@
 		<module>pyyh-ms-collection</module>
 		<module>pyyh-ms-login</module>
 		<module>pyyh-ms-manager</module>
+		<module>pyyh-ms-source</module>
 	</modules>
 </project>
