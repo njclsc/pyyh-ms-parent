@@ -15,6 +15,6 @@ public class Test {
 	private JedisCluster jc;
 	@RequestMapping("t1")
 	public String test(){
-		return "ccc";
+		return "ccc怪怪的";
 	}
 }
