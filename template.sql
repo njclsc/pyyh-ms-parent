@@ -21,21 +21,19 @@ USE `template`;
 DROP TABLE IF EXISTS `tb_modularmenu`;
 
 CREATE TABLE `tb_modularmenu` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `modularName` varchar(30) DEFAULT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `modularName` varchar(30) DEFAULT NULL COMMENT '模块名称',
   `parentId` int(11) DEFAULT '-1' COMMENT '模块父级菜单索引没有父级用1表示',
   `modularLevel` varchar(10) DEFAULT NULL COMMENT '模块菜单在UI中的第几级',
   `modularIndex` int(11) DEFAULT NULL COMMENT '相同级数中的索引位置',
   `url` varchar(200) DEFAULT NULL COMMENT '对应的后台地址',
-  `icon` varchar(20) DEFAULT NULL,
-  `uiName` varchar(20) DEFAULT NULL,
+  `icon` varchar(20) DEFAULT NULL COMMENT '前端图片',
+  `uiName` varchar(20) DEFAULT NULL COMMENT '前端显示名称，默认等于modularName',
   `isAction` tinyint(1) DEFAULT '0' COMMENT '是否是可操作菜单0:不是 1:是',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_modularmenu` */
-
-insert  into `tb_modularmenu`(`id`,`modularName`,`parentId`,`modularLevel`,`modularIndex`,`url`,`icon`,`uiName`,`isAction`) values (89,'t1',0,'1',1,NULL,NULL,NULL,0),(90,'t11',89,'2',1,NULL,NULL,NULL,0),(91,'a1',90,'3',1,NULL,NULL,NULL,1),(92,'a11',90,'3',2,NULL,NULL,NULL,1),(93,'a111',90,'3',3,NULL,NULL,NULL,1),(94,'t2',0,'1',2,NULL,NULL,NULL,0),(95,'t22',94,'2',1,NULL,NULL,NULL,0),(96,'t222',94,'2',2,NULL,NULL,NULL,0),(97,'a2',96,'3',1,NULL,NULL,NULL,1);
 
 /*Table structure for table `tb_organization` */
 
@@ -53,7 +51,7 @@ CREATE TABLE `tb_organization` (
 
 /*Data for the table `tb_organization` */
 
-insert  into `tb_organization`(`id`,`organizationName`,`organizationCode`,`organizationLevel`,`parentOrganizationCode`,`district`) values (5,'shbd','0000014',3,'0000016',NULL),(6,'江苏','000001',1,'0000000','2015'),(7,'aed','0000015',3,'0000017',NULL),(8,'111','222',33,'44','55'),(9,'b1','0000017',2,'000001',NULL),(10,'11','22',33,'44','55'),(12,'111','222',33,'44','55');
+insert  into `tb_organization`(`id`,`organizationName`,`organizationCode`,`organizationLevel`,`parentOrganizationCode`,`district`) values (5,'shbd','p3',3,'0000014',NULL),(6,'江苏','000001',1,'0000000','2015'),(7,'aed','0000014',3,'0000017',NULL),(8,'111','222',33,'44','55'),(9,'b1','0000017',2,'000001',NULL),(10,'11','22',33,'44','55'),(12,'111','222',33,'44','55');
 
 /*Table structure for table `tb_role` */
 
@@ -90,7 +88,7 @@ CREATE TABLE `tb_role_modular` (
 
 /*Data for the table `tb_role_modular` */
 
-insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,5),(2,19,91,5),(4,200,97,5);
+insert  into `tb_role_modular`(`id`,`roleIndex`,`modularIndex`,`organizationIndex`) values (1,18,92,5),(2,19,91,5),(4,19,98,5);
 
 /*Table structure for table `tb_user` */
 
@@ -107,11 +105,11 @@ CREATE TABLE `tb_user` (
   `createDateTime` varchar(30) DEFAULT NULL,
   `modifyDateTime` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_user` */
 
-insert  into `tb_user`(`id`,`account`,`password`,`organizationIndex`,`organizationCode`,`createAccount`,`modifyAccount`,`createDateTime`,`modifyDateTime`) values (13,'p1','p2',5,'0000014',NULL,NULL,NULL,NULL),(14,'x','a',NULL,'b','c',NULL,'d',NULL),(16,'x','a',NULL,'b','c',NULL,'d',NULL),(17,'x6','qqq4',NULL,'b','c','x6','d','tttt'),(18,'x1','a',NULL,'b','c',NULL,'d',NULL),(21,'x31','qqq4',NULL,'b','c','x6','d','tttt'),(22,'x31','qqq4',NULL,'bs','c','x6','d','tttt');
+insert  into `tb_user`(`id`,`account`,`password`,`organizationIndex`,`organizationCode`,`createAccount`,`modifyAccount`,`createDateTime`,`modifyDateTime`) values (13,'p1','p2',5,'0000014',NULL,NULL,NULL,NULL),(14,'x','a',NULL,'b','c',NULL,'d',NULL),(16,'x','a',NULL,'b','c',NULL,'d',NULL),(17,'x6','qqq4',NULL,'b','c','x6','d','tttt'),(21,'x31','qqq4',NULL,'b','c','x6','d','tttt'),(23,'pyyh','123',NULL,'0000014',NULL,NULL,NULL,NULL),(24,'pyyh1','12311',NULL,'0000014',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `tb_user_role` */
 

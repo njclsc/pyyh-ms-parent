@@ -31,7 +31,7 @@ public class AuthInterceptorServiceImp implements IAuthInterceptorService{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(222);
+//		System.out.println(222);
 		IAuthInterceptorService.super.postHandle(request, response, handler, modelAndView);
 	}
 
@@ -39,7 +39,7 @@ public class AuthInterceptorServiceImp implements IAuthInterceptorService{
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(333);
+//		System.out.println(333);
 		IAuthInterceptorService.super.afterCompletion(request, response, handler, ex);
 	}
 

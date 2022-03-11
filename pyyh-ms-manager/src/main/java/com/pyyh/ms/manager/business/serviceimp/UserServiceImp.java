@@ -20,9 +20,14 @@ public class UserServiceImp implements IUserService{
 		// TODO Auto-generated method stub
 		ResponsePojo rp = new ResponsePojo();
 		if(userDao.userExists(user) == 0){
-			userDao.userAdd(user);
-			rp.setState("success");
-			rp.setMessage("账号添加成功!");
+			if(user.getPassword().equals(user.getConfirmPassword())){
+				userDao.userAdd(user);
+				rp.setState("success");
+				rp.setMessage("账号添加成功!");
+			}else{
+				rp.setState("fail");
+				rp.setMessage("两次密码不一致!");
+			}
 		}else{
 			rp.setState("fail");
 			rp.setMessage("账号以存在!");
