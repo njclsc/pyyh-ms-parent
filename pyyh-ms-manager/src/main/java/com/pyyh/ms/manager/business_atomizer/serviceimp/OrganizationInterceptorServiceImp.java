@@ -25,15 +25,11 @@ public class OrganizationInterceptorServiceImp implements IOrganizationIntercept
 		JSONObject json = JSONObject.parseObject(info);
 		String js = RedisSourceConfigure.getJedisCluster().get(json.get("account") + "_#_" + json.get("organizationCode"));
 		System.out.println(js);
-		
 		if(json.get("organizationCode").equals("0000001") && json.getInteger("roleType") == 0){
-			System.out.println("111111111111");
 			return true;
 		}else{
-			System.out.println("22222222");
 			return false;
 		}
-		
 	}
 
 	@Override

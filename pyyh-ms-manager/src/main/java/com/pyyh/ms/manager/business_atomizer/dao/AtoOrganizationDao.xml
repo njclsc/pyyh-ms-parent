@@ -3,16 +3,12 @@
 
 <mapper namespace="com.pyyh.ms.manager.business_atomizer.dao.IAtoOrganizationDao">
 
-	<select id="roleFind" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
-		select tb_user.*, tb_role.roleType from tb_user
-		left join tb_user_role on tb_user.id = tb_user_role.userIndex
-		left join tb_role on tb_user_role.roleIndex = tb_role.id
-		where 1 = 1
-		<if test="tb_user.account != null and tb_user.account != ''">
-			and tb_user.account = #{account}
-		</if>
-		<if test="tb_user. organizationCode != null and tb_user. organizationCode != ''">
-			and tb_user. organizationCode = #{organizationCode}
-		</if>
+	<select id="organizationExists" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "Integer">
+		select exists (select 1 from tb_organization where organizationCode = #{organizationCode})
 	</select>
+	<insert id="organizationAdd" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" useGeneratedKeys = "true" keyProperty = "id">
+		insert into tb_organization(organizationName, organizationCode, organizationLevel, parentOrganizationCode, district) values(
+			#{organizationName}, #{organizationCode}, #{organizationLevel}, #{parentOrganizationCode}, #{district}
+		)
+	</insert>
 </mapper>

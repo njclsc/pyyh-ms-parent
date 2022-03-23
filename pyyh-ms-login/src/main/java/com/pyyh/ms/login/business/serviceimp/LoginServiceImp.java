@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pyyh.ms.login.business.dao.ILoginDao;
 import com.pyyh.ms.login.business.service.ILoginService;
 import com.pyyh.ms.login.configer.ProjectConfig;
 import com.pyyh.ms.login.pojos.ResponsePojo;
@@ -26,6 +27,8 @@ public class LoginServiceImp implements ILoginService{
 	@Autowired
 	@Qualifier("rediSource")
 	private JedisCluster jedis;
+	@Autowired
+	private ILoginDao loginDao;
 	@Override
 	public String check(UserPojo user, HttpServletResponse response) {
 		// TODO Auto-generated method stub
@@ -36,6 +39,7 @@ public class LoginServiceImp implements ILoginService{
 			subject.login(token);
 			user.setPassword("");
 			user.setLogin(true);
+			user.setId(loginDao.findUser(user).get(0).getId());
 			jedis.set(key, JSONObject.toJSONString(user));
 			jedis.pexpire(key, ProjectConfig.getJWT_EXPIRES());
 			String jwtToken = ProjectConfig.tokenOperate(1, user);

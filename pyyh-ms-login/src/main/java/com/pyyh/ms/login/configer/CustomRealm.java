@@ -30,7 +30,7 @@ public class CustomRealm extends AuthorizingRealm{
 		UserPojo user = new UserPojo();
 		user.setAccount(userInfo[0]);
 		user.setOrganizationCode(userInfo[1]);
-		UserPojo _user = loginDao.findUser(user);
+		UserPojo _user = loginDao.findUser(user).get(0);
 		if(_user != null){
 			SimpleAuthenticationInfo authen = new SimpleAuthenticationInfo(_user.getAccount() + "_#_" + _user.getOrganizationCode(), _user.getPassword(), this.getName());
 			return authen;
