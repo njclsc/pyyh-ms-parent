@@ -13,6 +13,7 @@ public class UserPojo {
 	private String createDateTime;
 	private String modifyDateTime;
 	private boolean isLogin;
+	private int roleType;
 	private int page;
 	private int rows;
 	private int begin;
@@ -43,6 +44,12 @@ public class UserPojo {
 	}
 	public void setOrganizationIndex(int organizationIndex) {
 		this.organizationIndex = organizationIndex;
+	}
+	public int getRoleType() {
+		return roleType;
+	}
+	public void setRoleType(int roleType) {
+		this.roleType = roleType;
 	}
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;

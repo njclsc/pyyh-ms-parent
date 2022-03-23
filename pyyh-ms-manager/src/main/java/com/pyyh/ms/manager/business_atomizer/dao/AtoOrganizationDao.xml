@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pyyh.ms.manager.business_atomizer.dao.IAtoOrganizationDao">
+
+	<select id="roleFind" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
+		select tb_user.*, tb_role.roleType from tb_user
+		left join tb_user_role on tb_user.id = tb_user_role.userIndex
+		left join tb_role on tb_user_role.roleIndex = tb_role.id
+		where 1 = 1
+		<if test="tb_user.account != null and tb_user.account != ''">
+			and tb_user.account = #{account}
+		</if>
+		<if test="tb_user. organizationCode != null and tb_user. organizationCode != ''">
+			and tb_user. organizationCode = #{organizationCode}
+		</if>
+	</select>
+</mapper>

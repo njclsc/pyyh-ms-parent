@@ -5,7 +5,8 @@ public class UserPojo {
 	private String account;
 	private String password;
 	private String organizationCode;
-	private int roleIndex;
+	private int roleIndex;//atomizer没有用到
+	private int roleType;
 	private boolean isLogin = false;
 	public int getId() {
 		return id;
@@ -15,6 +16,12 @@ public class UserPojo {
 	}
 	public String getAccount() {
 		return account;
+	}
+	public int getRoleType() {
+		return roleType;
+	}
+	public void setRoleType(int roleType) {
+		this.roleType = roleType;
 	}
 	public void setAccount(String account) {
 		this.account = account;

@@ -4,12 +4,15 @@
 <mapper namespace="com.pyyh.ms.login.business.dao.ILoginDao">
 
 	<select id="findUser" parameterType = "com.pyyh.ms.login.pojos.UserPojo" resultType = "com.pyyh.ms.login.pojos.UserPojo">
-		select * from tb_user where 1 = 1
+		select tb_user.id, tb_user.account, tb_user.password, tb_user.organizationCode, tb_role.roleType from tb_user
+		left join tb_user_role on tb_user.id = tb_user_role.userIndex
+		left join tb_role on tb_user_role.roleIndex = tb_role.id
+		where 1 = 1
 		<if test="account != null and account != ''">
-			and account = #{account}
+			and tb_user.account = #{account}
 		</if>
 		<if test="organizationCode != null and organizationCode != ''">
-			and organizationCode = #{organizationCode}
+			and tb_user.organizationCode = #{organizationCode}
 		</if>
 	</select>
 </mapper>

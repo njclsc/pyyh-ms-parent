@@ -22,3 +22,4 @@ spring:
 mybatis:
   mapper-locations:
     - classpath:com/pyyh/ms/manager/business/**/*.xml
+    - classpath:com/pyyh/ms/manager/business_atomizer/**/*.xml
