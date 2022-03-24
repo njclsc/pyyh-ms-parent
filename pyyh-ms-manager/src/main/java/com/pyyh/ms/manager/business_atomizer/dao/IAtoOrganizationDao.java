@@ -11,4 +11,8 @@ import com.pyyh.ms.manager.business.pojos.UserPojo;
 public interface IAtoOrganizationDao {
 	public int organizationExists(OrganizationPojo organizationPojo);
 	public void organizationAdd(OrganizationPojo organizationPojo);
+	public void organizationDelete(OrganizationPojo organizationPojo);
+	public void organizationUpdate(OrganizationPojo organizationPojo);
+	public List<OrganizationPojo> organizationFind(OrganizationPojo organizationPojo);
+	public int organizationCount(OrganizationPojo organizationPojo);
 }

@@ -7,6 +7,8 @@ public class OrganizationPojo {
 	private String organizationLevel;
 	private String parentOrganizationCode;
 	private String district;
+	private String creator;
+	private String creatorOrganizationCode;
 	private int page;
 	private int rows;
 	private int begin;
@@ -21,6 +23,18 @@ public class OrganizationPojo {
 	}
 	public void setOrganizationName(String organizationName) {
 		this.organizationName = organizationName;
+	}
+	public String getCreator() {
+		return creator;
+	}
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+	public String getCreatorOrganizationCode() {
+		return creatorOrganizationCode;
+	}
+	public void setCreatorOrganizationCode(String creatorOrganizationCode) {
+		this.creatorOrganizationCode = creatorOrganizationCode;
 	}
 	public String getOrganizationCode() {
 		return organizationCode;

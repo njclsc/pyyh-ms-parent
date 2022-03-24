@@ -1,5 +1,7 @@
 package com.pyyh.ms.manager.business_atomizer.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,19 +18,19 @@ public class AtoOrganizationController {
 	@Qualifier("AtoOrganizationManagerServiceImp")
 	private IAtoOrganizationManagerService atoOrgService;
 	@RequestMapping("add")
-	public String organizationAdd(@RequestBody OrganizationPojo organizationPojo){
-		return atoOrgService.organizationAdd(organizationPojo);
+	public String organizationAdd(@RequestBody OrganizationPojo organizationPojo, HttpServletRequest req){
+		return atoOrgService.organizationAdd(organizationPojo, req);
 	}
 	@RequestMapping("delete")
-	public String organizationDelete(@RequestBody OrganizationPojo organizationPojo){
-		return "";
+	public String organizationDelete(@RequestBody OrganizationPojo organizationPojo, HttpServletRequest req){
+		return atoOrgService.organizationDelete(organizationPojo, req);
 	}
 	@RequestMapping("update")
-	public String organizationUpdate(@RequestBody OrganizationPojo organizationPojo){
-		return "";
+	public String organizationUpdate(@RequestBody OrganizationPojo organizationPojo, HttpServletRequest req){
+		return atoOrgService.organizationUpdate(organizationPojo, req);
 	}
 	@RequestMapping("find")
-	public String organizationFind(@RequestBody OrganizationPojo organizationPojo){
-		return "";
+	public String organizationFind(@RequestBody OrganizationPojo organizationPojo, HttpServletRequest req){
+		return atoOrgService.organizationFind(organizationPojo, req);
 	}
 }

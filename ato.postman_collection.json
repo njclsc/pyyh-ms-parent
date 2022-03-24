@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "61ac463b-980c-4406-84f4-f7737ede1179",
+		"name": "ato",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "组织管理",
+			"item": [
+				{
+					"name": "组织添加",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwtToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsInVzZXJJbmRleCI6IjAiLCJvcmdhbml6YXRpb25Db2RlIjoiMDAwMDAwMSIsImV4cCI6MTY0ODEwMzI5MiwiaWF0IjoxNjQ4MDE2ODkyLCJhY2NvdW50IjoidTEifQ.scK7yiIEerjZ-RY6OJOR7fTWWUGTGydaVRTzp3J2Pbo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"organizationName\":\"o1\",\r\n    \"organizationCode\":\"0000002\",\r\n    \"organizationLevel\":\"2\",\r\n    \"parentOrganizationCode\":\"0000001\",\r\n    \"district\":\"大大滴\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.3.147:9030/manager/atomizer/organization/add",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"3",
+								"147"
+							],
+							"port": "9030",
+							"path": [
+								"manager",
+								"atomizer",
+								"organization",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "组织删除",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.3.147:9030/manager/atomizer/organization/delete",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"3",
+								"147"
+							],
+							"port": "9030",
+							"path": [
+								"manager",
+								"atomizer",
+								"organization",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "组织修改",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwtToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsInVzZXJJbmRleCI6IjAiLCJvcmdhbml6YXRpb25Db2RlIjoiMDAwMDAwMSIsImV4cCI6MTY0ODEwMzI5MiwiaWF0IjoxNjQ4MDE2ODkyLCJhY2NvdW50IjoidTEifQ.scK7yiIEerjZ-RY6OJOR7fTWWUGTGydaVRTzp3J2Pbo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"organizationName\":\"oee1\",\r\n    \"organizationCode\":\"0000003\",\r\n    \"organizationLevel\":\"2\",\r\n    \"district\":\"大大滴tttt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.3.147:9030/manager/atomizer/organization/update",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"3",
+								"147"
+							],
+							"port": "9030",
+							"path": [
+								"manager",
+								"atomizer",
+								"organization",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "组织查询",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "jwtToken",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsInVzZXJJbmRleCI6IjEiLCJvcmdhbml6YXRpb25Db2RlIjoiMDAwMDAwMSIsImV4cCI6MTY0ODE5MDg4NywiaWF0IjoxNjQ4MTA0NDg3LCJhY2NvdW50IjoidTEifQ.h_GysIg1UDAT60aOvIL4s0Bev9NCK1D1TixsXAhJraY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.3.147:9030/manager/atomizer/organization/find",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"3",
+								"147"
+							],
+							"port": "9030",
+							"path": [
+								"manager",
+								"atomizer",
+								"organization",
+								"find"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "登录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account\":\"u1\",\r\n    \"password\":\"1\",\r\n    \"organization\":\"0000001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.3.147:9020/login/login/check",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"3",
+						"147"
+					],
+					"port": "9020",
+					"path": [
+						"login",
+						"login",
+						"check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

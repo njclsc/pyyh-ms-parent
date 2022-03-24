@@ -7,8 +7,50 @@
 		select exists (select 1 from tb_organization where organizationCode = #{organizationCode})
 	</select>
 	<insert id="organizationAdd" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" useGeneratedKeys = "true" keyProperty = "id">
-		insert into tb_organization(organizationName, organizationCode, organizationLevel, parentOrganizationCode, district) values(
-			#{organizationName}, #{organizationCode}, #{organizationLevel}, #{parentOrganizationCode}, #{district}
+		insert into tb_organization(organizationName, organizationCode, organizationLevel, parentOrganizationCode, district, 
+			creator, creatorOrganizationCode) values(
+			#{organizationName}, #{organizationCode}, #{organizationLevel}, #{parentOrganizationCode}, #{district}, 
+			#{creator}, #{creatorOrganizationCode}
 		)
 	</insert>
+	<delete id="organizationDelete" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
+		DELETE FROM tb_organization WHERE organizationCode = #{organizationCode} AND creator = #{creator} AND creatorOrganizationCode = #{creatorOrganizationCode}
+	</delete>
+	<update id="organizationUpdate" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
+		update tb_organization set organizationName = #{organizationName}, organizationLevel = #{organizationLevel},
+		 district = #{district} where organizationCode = #{organizationCode} and creator = #{creator} and creatorOrganizationCode= #{creatorOrganizationCode}
+	</update>
+	<select id="organizationFind" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo">
+		select * from tb_organization where 1 = 1
+		<if test="organizationName != null and organizationName != ''">
+			and organizationName = #{organizationName}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = #{organizationCode}
+		</if>
+		<if test="creator != null and creator != '' and creatorOrganizationCode != null and creatorOrganizationCode != ''">
+			and organizationCode = #{organizationCode} and creatorOrganizationCode = #{creatorOrganizationCode}
+		</if>
+		<if test="organizationLevel != null and organizationLevel != ''">
+			and organizationLevel = #{organizationLevel}
+		</if>
+		<if test="rows != null and rows != ''">
+			limit ${begin}, ${rows}
+		</if>
+	</select>
+	<select id="organizationCount" parameterType = "com.pyyh.ms.manager.business.pojos.OrganizationPojo" resultType = "Integer">
+		select count(*) from tb_organization where 1 = 1
+		<if test="organizationName != null and organizationName != ''">
+			and organizationName = #{organizationName}
+		</if>
+		<if test="organizationCode != null and organizationCode != ''">
+			and organizationCode = #{organizationCode}
+		</if>
+		<if test="creator != null and creator != '' and creatorOrganizationCode != null and creatorOrganizationCode != ''">
+			and organizationCode = #{organizationCode} and creatorOrganizationCode = #{creatorOrganizationCode}
+		</if>
+		<if test="organizationLevel != null and organizationLevel != ''">
+			and organizationLevel = ${organizationLevel}
+		</if>
+	</select>
 </mapper>
